@@ -1,0 +1,42 @@
+from gpiozero import Servo, Motor
+
+#Following classes require input between -50 and 50
+class rovServo(Servo):
+	def __init__(self):
+		Servo.__init__.self() ##Fix this, need to look up and add constants here
+	def set_speed(setpoint):
+		if setpoint < -50 or setpoint > 50:
+			raise ValueError("Value must be between -50 and 50)
+		servo_setpoint = (1/50)*setpoint-1
+		self.value = servo_setpoint
+
+
+class rovBrushless(Servo):
+	def __init__(self):
+		Servo.__init__.self()
+
+	def set_speed(setpoint):		
+		if setpoint < -50 or setpoint > 50:
+			rais ValueError("Value must be between -50 and 50)
+		servo_setpoint = (1/50)*setpoint-1
+		self.value = servo_setpoint		
+
+##Following classes require input between -50 and 50
+class rovBrushless_unidirectional(Servo):
+	def __init__(self):
+		Servo.__init__.self()
+
+	def set_speed(setpoint_uni): ##Requires input between -50 (full reverse) and 50 (full forward)
+		if setpoint < -50 or setpoint > 50:
+			raise ValueError("Value must be between -50 and 50)
+		servo_setpoint = 1/50*setpoint
+
+class rovBrushed(Motor):
+	def __init__(self):
+
+	def set_speed(setpoint_uni)		
+		if setpoint < -50 or setpoint > 50:
+			raise ValueError("Value must be between -50 and 50)
+		servo_setpoint = 1/50*setpoint
+
+class tempSensor():

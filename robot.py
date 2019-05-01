@@ -10,9 +10,8 @@ def __main__():
 
 	while 1:
 		controller_input.read_state()
-		print(controller_input.a_button)
-		print(controller_input.b_button)
-		print(controller_input.left_stick_y)
+		### Write your robot code here (script or write other functions)
+
 
 #Start the code
 __main__()

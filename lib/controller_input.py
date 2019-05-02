@@ -62,3 +62,53 @@ class Controller():
 				self.right_stick_y = event.state
 			elif event.code == self.map.right_stick_x:
 				self.right_stick_x = event.state
+
+## Returns value between 0 and 100 when given a trigger or stick value
+def servoInput(input_value, input_type):
+	input_type_list = ['trigger', 'stick', 'button', 'half_stick_pos', 'half_stick_neg']	
+
+	if input_type not in input_type_list:
+		raise ValueError("Input type %s is not a supported type. Check your spelling?" %input_type)
+
+	if input_type == 'trigger':
+		if input_value > 1023 or input_value < 0:
+			raise ValueError("The input value is out of the expected range. Input value is %s" %str(input_value)) 
+		else:
+			output = input_value/1023.0*100
+
+	elif input_type == 'stick':
+		if input_value > 32768 or input_value < -37268:
+			raise ValueError("The input value is out of the expected range. Input value is %s" %str(input_value)) 
+		output = 100*(input_value/65536.0+0.50)
+
+	elif input_type == 'half_stick_pos':
+		if abs(input_value) > 32768:
+			raise ValueError("The input value is out of the expected range. Input value is %s" %str(input_value)) 
+		if input_value <= 0:
+			output = 0
+		else:
+			output = input_value/32767.0*100
+
+	elif input_type == 'half_stick_neg':
+		if abs(input_value) > 32768:
+			raise ValueError("The input value is out of the expected range. Input value is %s" %str(input_value)) 
+		if input_value >= 0:
+			output = 0
+		else:
+			output = -1*input_value/32768.0*100
+
+	return output
+
+##Returns motor output between -50 and 50 from stick input
+def motorStickInput(input_value, inverted = False):
+	if input_value < -37268 or input_value > 37268:
+		raise ValueError("Input value is out of range. Input value is %s" %str(input_value))
+	
+	output = 50*input_value/32768.0
+
+	if inverted:
+		output = output * -1
+
+	return output
+
+

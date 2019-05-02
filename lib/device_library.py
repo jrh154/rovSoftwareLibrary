@@ -58,6 +58,7 @@ class rovBrushlessDualEsc(Servo):
 		self.forward_esc.value = -1
 		self.reverse_esc.value = -1
 
+##Takes value between -50 and 50
 class rovBrushed(Motor):
 	def __init__(self, pin1, pin2):
 		self = Motor.__init__(pin1, pin2)

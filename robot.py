@@ -1,15 +1,14 @@
-from lib.controller_input import Controller
+import lib.controller_input as cip
 from devices import deviceList
 from lib.maps import piMap
 
 def __main__():
 
 	hardware = piMap()
-	controller_input = Controller()
+	controller = cip.Controller()
 	devices = deviceList()
-
 	while 1:
-		controller_input.read_state()
+		controller.read_state()
 		### Write your robot code here (script or write other functions)
 
 

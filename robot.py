@@ -7,6 +7,7 @@ def __main__():
 	hardware = piMap()
 	controller = cip.Controller()
 	devices = deviceList()
+	deadband = 3
 	while 1:
 		controller.read_state()
 		### Write your robot code here (script or write other functions)
@@ -14,9 +15,15 @@ def __main__():
 		print("Servo Setpoint: %s" %servo_setpoint)
 		devices.testServo.set_position(servo_setpoint)
 
-		motor_setpoint = cip.stickMotorInput(controller.left_stick_y, True)
+		motor_setpoint = cip.motorStickInput(controller.left_stick_y, True)
+
+		if motor_setpoint > deadband or motor_setpoint < -1*deadband:
+			motor_setpoint = motor_setpoint
+		else:
+			motor_setpoint = 0
+
 		print("Motor Setpoint: %s" %motor_setpoint)
-		devices.testDualESC.set_position(motor_setpoint)
+		devices.testDualEsc.set_speed(motor_setpoint)
 
 
 #Start the code

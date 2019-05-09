@@ -46,7 +46,7 @@ class rovBrushlessDualEsc(Servo):
 			raise ValueError("Value must be between -50 and 50")
 		elif setpoint >= 0:
 			servo_setpoint = setpoint/25.0-1
-			self.forward_esc.value = sevro_setpoint
+			self.forward_esc.value = servo_setpoint
 			self.reverse_esc.value = -1
 		elif setpoint < 0:
 			servo_setpoint = -1*setpoint/25.0-1

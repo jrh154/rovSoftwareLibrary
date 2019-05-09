@@ -7,9 +7,11 @@ class rovServo(Servo):
 
 	##Sets servo to a given position, takes input between 0 and 100
 	def set_position(self, setpoint):
+		print("Servo: Motor read %s" %setpoint)
 		if setpoint < 0 or setpoint > 100:
 			raise ValueError("Value must be between 0 and 100")
 		servo_setpoint = (1/50.0)*setpoint-1
+		print("Servo motor set to: %s" %setpoint)
 		self.value = servo_setpoint
 
 	##Resets servo value to neutral (0) position

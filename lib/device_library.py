@@ -3,7 +3,7 @@ from gpiozero import Servo, Motor
 ##rovServo, needs pin as input when initializing
 class rovServo(Servo):
 	def __init__(self, pin):
-		self = Servo.__init__.self(pin)
+		Servo.__init__(self, pin)
 
 	##Sets servo to a given position, takes input between 0 and 100
 	def set_position(self, setpoint):
@@ -19,7 +19,7 @@ class rovServo(Servo):
 ##rovBrushless, needs pin when initializing
 class rovBrushless(Servo):
 	def __init__(self, pin):
-		self = Servo.__init__.self(pin)
+		self = Servo.__init__(self, pin)
 
 	##Sets the motor speed to either -1 (no speed) or 1 (full speed)
 	##Takes input between 0 and 100
@@ -37,8 +37,8 @@ class rovBrushless(Servo):
 ##Following classes require input between -50 and 50
 class rovBrushlessDualEsc(Servo):
 	def __init__(self, pin1, pin2):
-		self.forward_esc = Servo.__init__(pin1)
-		self.reverse_esc = Servo.__init__(pin2)
+		self.forward_esc = Servo(pin1)
+		self.reverse_esc = Servo(pin2)
 
 	##Requires input between -50 (full reverse) and 50 (full forward)
 	def set_speed(self, setpoint):
@@ -47,10 +47,10 @@ class rovBrushlessDualEsc(Servo):
 		elif setpoint >= 0:
 			servo_setpoint = setpoint/25.0-1
 			self.forward_esc.value = sevro_setpoint
-			self.reverse_esc.value = 0
+			self.reverse_esc.value = -1
 		elif setpoint < 0:
 			servo_setpoint = -1*setpoint/25.0-1
-			self.forward_esc.value = 0
+			self.forward_esc.value = -1
 			self.reverse_esc.value = servo_setpoint
 
 	##Stops motor

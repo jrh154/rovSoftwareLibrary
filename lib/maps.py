@@ -1,6 +1,8 @@
 class piMap():
 	##List the motor/controller pins here
-	pass ##delete this line when you add stuff!!!
+	testServo_pin = 12
+	testMotorDualESC_fpin = 14
+	testMotorDualESC_rpin = 16
 
 
 

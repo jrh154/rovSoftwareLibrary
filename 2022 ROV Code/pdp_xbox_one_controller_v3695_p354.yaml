@@ -1,0 +1,46 @@
+axes:
+  lt:
+    code: 2
+    invert: false
+    max_value: 1023
+    min_value: 0
+  lx:
+    code: 0
+    invert: false
+    max_value: 32767
+    min_value: -32768
+  ly:
+    code: 1
+    invert: false
+    max_value: 32767
+    min_value: -32768
+  rt:
+    code: 5
+    invert: false
+    max_value: 1023
+    min_value: 0
+  rx:
+    code: 3
+    invert: false
+    max_value: 32767
+    min_value: -32768
+  ry:
+    code: 4
+    invert: false
+    max_value: 32767
+    min_value: -32768
+buttons:
+  B: 305
+  A: 304
+  home: 316
+  l1: 310
+  ls: 317
+  r1: 311
+  rs: 318
+  select: 314
+  X: 307
+  start: 315
+  Y: 308
+name: PDP Xbox One Controller
+product: 354
+vendor: 3695

@@ -3,7 +3,7 @@
 ### Option 1: Motion
 Using the motion package. Link to install tutorial:
 
-(Motion)[https://www.circuitbasics.com/how-to-make-a-webcam-server-using-the-raspberry-pi-camera/]
+[Motion](https://www.circuitbasics.com/how-to-make-a-webcam-server-using-the-raspberry-pi-camera/)
 
 Key here: need to ensure streamrate and framerate are low latency.
 
@@ -19,26 +19,28 @@ Using the OpenCV package to enable on-board image processing.
 
 ## Arduino-Python Communication
 *current solution*
-Looking at using (PyFirmata)[https://github.com/tino/pyFirmata] as communication profile. But may be limited in ability to use I2C, Serial comms, servos, etc. 
+Looking at using [PyFirmata](https://github.com/tino/pyFirmata) as communication profile. But may be limited in ability to use I2C, Serial comms, servos, etc. 
 
 `sudo pip3 install pyfirmata`
 
 Should continue to look at other possible solutions for this problem.
 
 ## USB over Ethernet (VirtualHere)
--install server on driver station computer
-(Windows Server Link)[https://virtualhere.com/sites/default/files/usbclient/vhui64.exe]
 
-### New Client
+### Host Computer
+-install server on driver station computer
+[Windows Server Link](https://virtualhere.com/sites/default/files/usbclient/vhui64.exe)
+
+### Client Computer
 The free version of VirtualHere only supports one device and will only connect through GUI.
 This means we will need to run VNCViewer (or similar) to connect to PI (which may not be worst anyways)
 
 *KEY NOTE* XboxOne controllers do not run on VirtualHere. 
 
-(Link to Client Download)[https://virtualhere.com/usb_client_software]
+[Link to Client Download](https://virtualhere.com/usb_client_software)
 
 
-### Depricated
+### Depricated Solution
 -install client on raspberry pi/underwater computer
 `curl https://virtualhere.com/sites/default/files/usbclient/vhclientarmhf`
 `sudo chmod +x vhclientarmhf`
@@ -47,7 +49,7 @@ This means we will need to run VNCViewer (or similar) to connect to PI (which ma
 ## Xbox Controller-Python
 
 ###Current version
-[Approximate Engineering Input Documentation]{https://approxeng.github.io/approxeng.input/index.html}
+(Approximate Engineering Input Documentation)[https://approxeng.github.io/approxeng.input/index.html]
 `pip3 install approxeng.input`
 Installs the library
 

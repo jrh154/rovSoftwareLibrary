@@ -1,4 +1,4 @@
-#Dependencies so far:
+# Dependencies so far:
 ## Webcam Streaming Service
 ### Option 1: Motion
 Using the motion package. Link to install tutorial:

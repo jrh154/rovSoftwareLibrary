@@ -48,7 +48,7 @@ This means we will need to run VNCViewer (or similar) to connect to PI (which ma
 
 ## Xbox Controller-Python
 
-###Current version
+### Current version
 (Approximate Engineering Input Documentation)[https://approxeng.github.io/approxeng.input/index.html]
 `pip3 install approxeng.input`
 Installs the library

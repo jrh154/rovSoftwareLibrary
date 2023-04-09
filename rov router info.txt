@@ -1,5 +1,0 @@
-SSID: ROV-5GHz
-PW: tikitechs3880
-
-SSID: ROV-24GHz
-PW: tikitechs3880

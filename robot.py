@@ -1,31 +1,65 @@
-import lib.controller_input as cip
-from devices import deviceList
-from lib.maps import piMap
+import time
+from gpiozero import Servo
+from approxeng.input.selectbinder import ControllerResource
+from devices import rovMotor
 
-def __main__():
+'''
+Set pin values and initialize motors
+'''
 
-	hardware = piMap()
-	controller = cip.Controller()
-	devices = deviceList()
-	deadband = 3
-	while 1:
-		controller.read_state()
-		### Write your robot code here (script or write other functions)
-		servo_setpoint = cip.servoInput(controller.right_trigger, "trigger")
-		print("Servo Setpoint: %s" %servo_setpoint)
-		devices.testServo.set_position(servo_setpoint)
+#Define motor pins
+VM1_PIN1 = 7
+VM1_PIN2 = 4
 
-		motor_setpoint = cip.motorStickInput(controller.left_stick_y, True)
+VM2_PIN1 = 5
+VM2_PIN2 = 6
 
-		if motor_setpoint > deadband or motor_setpoint < -1*deadband:
-			motor_setpoint = motor_setpoint
-		else:
-			motor_setpoint = 0
+XM_PIN1 = 9
+XM_PIN2 = 8
 
-		print("Motor Setpoint: %s" %motor_setpoint)
-		devices.testDualEsc.set_speed(motor_setpoint)
+YM_PIN1 = 2
+YM_PIN2 = 10
 
+#Define servo pins
+S1_PIN = 3
 
-#Start the code
-__main__()
+#Initiate motors
+v_motor1 = rovMotor(VM1_PIN1, VM1_PIN2)
+v_motor2 = rovMotor(VM2_PIN1, VM2_PIN2)
+x_motor = rovMotor(XM_PIN1, XM_PIN2)
+y_motor = rovMotor(YM_PIN1, YM_PIN2)
 
+#Initiate servo
+servo1 = Servo(S1_PIN)
+
+'''
+Functioning robot code
+'''
+while True:
+    try:
+        #joystick found, run code
+        with ControllerResource() as joystick:
+            print("Joystick Found")
+            while joystick.connected:
+                #Get motor setpoint values
+                v_speed = -1*joystick['ry'] #-1 de-inverts controls (up on stick is forward)
+                x_speed = joystick['lx']
+                y_speed = -1*joystick['ly'] #-1 de-inverts controls (up on stick is forward)
+                
+                #Get servo setpoint values
+                servo_setpoint = joystick['lt'] - joystick['rt']
+                
+                #Set motor speed values
+                v_motor1.setSpeed(v_speed)
+                v_motor2.setSpeed(-1*v_speed) #Opposite direction due to opposite prop pitch
+                x_motor.setSpeed(x_speed)
+                y_motor.setSpeed(y_speed)
+                
+                #Set Servo value
+                servo1.value = servo_setpoint
+                
+            print("Joystick Connection Lost!")
+    except IOError:
+        # No joystick found, wait for a bit
+        print("Unable to find any joysticks")
+        time.sleep(1.0)
